@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@300;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* Fondo gris suave con pinceladas moradas en las dos esquinas */
+  background-color: #ececec;
+  background-image:
+    radial-gradient(circle at top left,    #8a2be2 0%, transparent 70%),
+    radial-gradient(circle at bottom right,#8a2be2 0%, transparent 70%);
+  font-family: 'Lato', sans-serif;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.card {
+  position: relative;
+  background: #f7f7f7;
+  padding: 50px 30px 80px;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 20px;
+  border: 2px solid #8a2be2;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Icono decorativo en la cabecera */
+.card::before {
+  content: '💜';
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3rem;
+}
+
+h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+  color: #6a0dad;
+  margin-bottom: 8px;
+}
+
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 1.1rem;
+  color: #8a2be2;
+  margin-bottom: 30px;
+}
+
+.reason {
+  font-size: 1rem;
+  line-height: 1.6;
+  min-height: 120px;
+  margin-bottom: 40px;
+  padding: 0 10px;
+  color: #444;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reason.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-buttons button {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin: 0 10px;
+  padding: 10px 24px;
+  background: linear-gradient(90deg, #6a0dad 0%, #8a2be2 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-buttons button:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+.nav-buttons button:disabled {
+  background: #bbb;
+  cursor: default;
+  opacity: 0.6;
+}
+
+#counter {
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  color: #555;
+  margin: 0 12px;
+}
+
+/* ——— Responsive: ajusta para pantallas pequeñas ——— */
+@media (max-width: 480px) {
+  .card {
+    padding: 30px 15px 60px;
+  }
+  h1 {
+    font-size: 1.6rem;
+  }
+  h2 {
+    font-size: 0.95rem;
+  }
+  .reason {
+    font-size: 0.95rem;
+    min-height: 100px;
+  }
+  .nav-buttons button {
+    margin: 0 6px;
+    padding: 8px 20px;
+    font-size: 0.85rem;
+  }
+}

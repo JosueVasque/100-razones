@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>100 Razones para Seguir Amándote</title>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Montserrat:wght@400;700&display=swap" 
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="card">
+    <div class="ladybug"></div>
+    <h1>100 Razones para Seguir Amándote</h1>
+    <h2 id="subtitle">Razón para seguir amándote</h2>
+
+    <div id="reason" class="reason"></div>
+
+    <div class="nav-buttons">
+      <button id="prev-btn">« Atrás</button>
+      <span id="counter"></span>
+      <button id="next-btn">Siguiente »</button>
+    </div>
+  </div>
+
+  <script>
+    // Tus 100 razones a amar + 1 razón final para dejar ir
+    const reasons = [
+      "Por tu forma de ser",
+      "Por tu sonrisa",
+      "Por tu belleza",
+      "Por tus labios",
+      "Por tus ojos",
+      "Por tu cuerpo",
+      "Por tus pestañas",
+      "Por tu pelo",
+      "Por tu personalidad",
+      "Por tu actitud",
+      "Por tu lealtad",
+      "Por tu paciencia",
+      "Por tu manera de escuchar",
+      "Por tu manera de hablar",
+      "Por tu manera de entender",
+      "Por tu inteligencia",
+      "Por tu amabilidad",
+      "Por tu madurez",
+      "Por tu corazón",
+      "Por tus besos",
+      "Por tus abrazos",
+      "Por tus cariños",
+      "Por cómo me haces reír",
+      "Por cómo me amas",
+      "Por cómo me miras",
+      "Por cómo me entiendes",
+      "Por tu sinceridad",
+      "Por tu energía",
+      "Porque eres hermosa",
+      "Porque eres única",
+      "Por no me dejas solo",
+      "Por me haces olvidar de todo",
+      "Por tu risa",
+      "Por tus lágrimas",
+      "Por tus berrinches",
+      "Por me ayudas siempre",
+      "Por eres simpática",
+      "Por eres buena persona",
+      "Por eres perfecta para mí",
+      "Por me motivas a ser mejor",
+      "Por tu piel",
+      "Por me das paz",
+      "Por me haces mejor persona",
+      "Por tus defectos",
+      "Por tus capacidades",
+      "Por tu felicidad",
+      "Por tu amor",
+      "Por tus enojos",
+      "Por tu seriedad",
+      "Porque eres sensible",
+      "Por tu carácter",
+      "Por tu mirada",
+      "Por tus valores",
+      "Por tu confianza hacia mí",
+      "Por tus acciones hablan",
+      "Porque tus chistes me divierten",
+      "Porque tus burlas me hacen reír",
+      "Porque tu vergüenza te hace tierna",
+      "Por tus sueños",
+      "Por tus promesas",
+      "Por nuestra conexión",
+      "Por tu voz me calma",
+      "Porque tu forma de vestir refleja tu estilo",
+      "Por todo lo que me enseñas",
+      "Porque tus gestos hablan por ti",
+      "Porque eres comprensiva",
+      "Porque eres atenta",
+      "Porque eres tímida cuando sonríes",
+      "Porque eres dormilona y adorable",
+      "Porque eres detallista",
+      "Porque eres entretenida",
+      "Porque tu relación con mi familia es hermosa",
+      "Porque tu sentido del humor",
+      "Porque eres lo mejor que tengo",
+      "Porque eres la mujer que más amo",
+      "Por la forma en la que te hago enojar me enseña",
+      "Porque celebro tus logros",
+      "Porque tus expresiones lo dicen todo",
+      "Porque tu alegría al contarme algo nuevo me inspira",
+      "Porque tu olor me transporta a momentos felices",
+      "Porque tus buenos días alegran mi mañana",
+      "Porque tus buenas noches me arrullan",
+      "Porque tus miedos te hacen humana",
+      "Porque tus metas demuestran tu fuerza",
+      "Por tu forma de expresarte es única",
+      "Porque tu creatividad me sorprende",
+      "Porque tu locura es divertida",
+      "Porque tu color de ojos me hipnotiza",
+      "Porque tu inocencia me conmueve",
+      "Porque tu atención hacia mí me hace sentir valioso",
+      "Porque tu brillo ilumina mi mundo",
+      "Porque tu afecto me nutre el alma",
+      "Porque tu compañía es mi hogar",
+      "Porque tu seguridad me da confianza",
+      "Porque tu lado amoroso me enciende",
+      "Porque te preocupas por mí",
+      "Porque nuestras discusiones nos acercan",
+      "Porque nuestras fotos guardan recuerdos",
+      "Porque amo todo de ti",
+      "Porque simplemente eres tu",
+      // Razón final:
+      "La única razón para dejarte ir es entender que ya no me amas; esa chispa en tu mirada se ha desvanecido. Estoy seguro de que encontrarás a alguien que te cuide como mereces, y aunque me cueste aceptarlo, confío que estarás mejor sin mi, pero deseo saber como estas y como te sientes.",
+    ];
+
+    let index = 0;
+    const reasonDiv   = document.getElementById("reason");
+    const counterSpan = document.getElementById("counter");
+    const prevBtn     = document.getElementById("prev-btn");
+    const nextBtn     = document.getElementById("next-btn");
+    const subtitle    = document.getElementById("subtitle");
+
+    function updateView() {
+      // transición de salida
+      reasonDiv.style.opacity = 0;
+      reasonDiv.style.transform = 'translateY(20px)';
+      setTimeout(() => {
+        // actualizar contenido
+        reasonDiv.textContent = reasons[index];
+        if (index < 100) {
+          counterSpan.textContent = `${index + 1} / 100`;
+          subtitle.textContent = "Razón para seguir amándote";
+        } else {
+          counterSpan.textContent = "";
+          subtitle.textContent = "1 Razón para Dejarte Ir";
+        }
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === reasons.length - 1;
+        // transición de entrada
+        reasonDiv.style.transform = 'translateY(0)';
+        reasonDiv.style.opacity = 1;
+      }, 400);
+    }
+
+    prevBtn.addEventListener("click", () => {
+      if (index > 0) {
+        index--;
+        updateView();
+      }
+    });
+
+    nextBtn.addEventListener("click", () => {
+      if (index < reasons.length - 1) {
+        index++;
+        updateView();
+      }
+    });
+
+    // inicializamos la vista
+    updateView();
+  </script>
+</body>
+</html>
